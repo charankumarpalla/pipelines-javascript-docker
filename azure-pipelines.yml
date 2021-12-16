@@ -13,7 +13,7 @@ resources:
 
 variables:
   tag: '$(Build.BuildId)'
-  imageName: 'pipelines-javascript-docker'
+  # imageName: 'pipelines-javascript-docker'
   ImageName: 'reddyrani/devops:$(Build.BuildId)'
 
 # steps:
