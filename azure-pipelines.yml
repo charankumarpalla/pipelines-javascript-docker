@@ -13,7 +13,8 @@ resources:
 
 variables:
   tag: '$(Build.BuildId)'
-  imageName: 'pipelines-javascript-docker'
+  # imageName: 'pipelines-javascript-docker'
+  ImageName: 'reddyrani/devops:$(Build.BuildId)'
 
 # steps:
 # - task: Docker@2
@@ -31,10 +32,19 @@ variables:
 #     pool:
 #       vmImage: ubuntu-latest
 steps:
+# - task: Docker@2
+#   displayName: Build an image
+#   inputs:
+#     command: build
+#     dockerfile: '$(Build.SourcesDirectory)/app/Dockerfile'
+#     tags: |
+#       $(tag)
+
 - task: Docker@2
-  displayName: Build an image
+  displayName: Build and Push an image
   inputs:
-    command: build
-    dockerfile: '$(Build.SourcesDirectory)/app/Dockerfile'
-    tags: |
-      $(tag)
+    containerRegistry: 'dockerhub-rani'
+    repository: 'reddyrani/devops'
+    command: 'buildAndPush'
+    Dockerfile: 'app/Dockerfile'
+    tags: '$(tag)'

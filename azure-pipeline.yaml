@@ -16,8 +16,15 @@ steps:
 - task: Docker@2
   displayName: Build an image
   inputs:
+    containerRegistry: 'dockerhub-rani'
     repository: $(imageName)
     command: build
     Dockerfile: app/Dockerfile
+- task: Docker@2
+  inputs:
+    containerRegistry: 'dockerhub-rani'
+    repository: 'devops'
+    command: 'buildAndPush'
+    Dockerfile: 'app/Dockerfile'
 
 
