@@ -14,6 +14,7 @@ resources:
 variables:
   tag: '$(Build.BuildId)'
   imageName: 'pipelines-javascript-docker'
+  ImageName: 'reddyrani/devops:$(Build.BuildId)'
 
 # steps:
 # - task: Docker@2
@@ -43,8 +44,7 @@ steps:
   displayName: Build and Push an image
   inputs:
     containerRegistry: 'dockerhub-rani'
-    # repository: $(imageName)
+    repository: 'devops'
     command: 'buildAndPush'
-    Dockerfile: app/Dockerfile
-    tags: |
-      $(tag)
+    Dockerfile: 'app/Dockerfile'
+    tags: '$(tag)'
