@@ -48,3 +48,11 @@ steps:
     command: 'buildAndPush'
     Dockerfile: 'app/Dockerfile'
     tags: '$(tag)'
+
+- task: KubernetesManifest@0
+  inputs:
+    action: 'deploy'
+    kubernetesServiceConnection: 'MykubeConnection'
+    namespace: 'default'
+    manifests: 'deploy/kubernetes.yaml'
+    containers: 'docker.io/reddyrani/jsimages:4'
