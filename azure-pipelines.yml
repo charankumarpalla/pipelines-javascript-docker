@@ -16,35 +16,20 @@ variables:
   # imageName: 'pipelines-javascript-docker'
   ImageName: 'reddyrani/devops:$(Build.BuildId)'
 
-# steps:
+
 # - task: Docker@2
-#   displayName: Build an image
+#   displayName: Build and Push an image
 #   inputs:
-#     repository: $(imageName)
-#     command: build
-#     Dockerfile: app/Dockerfile
-# stages:
-# - stage: Build
-#   displayName: Build image
-#   jobs:
-#   - job: Build
-#     displayName: Build
-#     pool:
-#       vmImage: ubuntu-latest
-steps:
-# - task: Docker@2
-#   displayName: Build an image
-#   inputs:
-#     command: build
-#     dockerfile: '$(Build.SourcesDirectory)/app/Dockerfile'
-#     tags: |
-#       $(tag)
+#     containerRegistry: 'dockerhub-rani'
+#     repository: 'reddyrani/devops'
+#     command: 'buildAndPush'
+#     Dockerfile: 'app/Dockerfile'
+#     tags: '$(tag)'
 
 - task: Docker@2
-  displayName: Build and Push an image
   inputs:
-    containerRegistry: 'dockerhub-rani'
-    repository: 'reddyrani/devops'
+    containerRegistry: 'docker connection'
+    repository: 'reddyrani/jsimages'
     command: 'buildAndPush'
     Dockerfile: 'app/Dockerfile'
     tags: '$(tag)'
