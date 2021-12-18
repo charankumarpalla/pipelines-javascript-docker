@@ -49,10 +49,23 @@ steps:
 #     Dockerfile: 'app/Dockerfile'
 #     tags: '$(tag)'
 
-- task: KubernetesManifest@0
+- task: SonarCloudAnalyze@1
+- task: SonarCloudPublish@1
   inputs:
-    action: 'deploy'
-    kubernetesServiceConnection: 'MykubeConnection'
-    namespace: 'default'
-    manifests: 'deploy/kubernetes.yaml'
-    containers: 'docker.io/reddyrani/jsimages:4'
+    pollingTimeoutSec: '300'
+
+# - task: SonarCloudPrepare@1
+#   inputs:
+#     SonarCloud: 'sonarcloud'
+#     organization: 'devops963'
+#     scannerMode: 'CLI'
+#     configMode: 'file'
+
+# - task: KubernetesManifest@0
+#   inputs:
+
+#     action: 'deploy'
+#     kubernetesServiceConnection: 'MykubeConnection'
+#     namespace: 'default'
+#     manifests: 'deploy/kubernetes.yaml'
+#     containers: 'docker.io/reddyrani/jsimages:4'
