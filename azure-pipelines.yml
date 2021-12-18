@@ -48,18 +48,18 @@ steps:
 #     command: 'buildAndPush'
 #     Dockerfile: 'app/Dockerfile'
 #     tags: '$(tag)'
+- task: SonarCloudPrepare@1
+  inputs:
+    SonarCloud: 'sonarcloud'
+    organization: 'devops963'
+    scannerMode: 'CLI'
+    configMode: 'file'
 
 - task: SonarCloudAnalyze@1
 - task: SonarCloudPublish@1
   inputs:
     pollingTimeoutSec: '300'
 
-# - task: SonarCloudPrepare@1
-#   inputs:
-#     SonarCloud: 'sonarcloud'
-#     organization: 'devops963'
-#     scannerMode: 'CLI'
-#     configMode: 'file'
 
 # - task: KubernetesManifest@0
 #   inputs:
