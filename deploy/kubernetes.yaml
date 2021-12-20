@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: honemydeploymentpodynodepod
-          image: docker.io/reddyrani/jsimages:4
+          image: docker.io/reddyrani/devops:1
           resources:
             limits:
               memory: "50Mi"
