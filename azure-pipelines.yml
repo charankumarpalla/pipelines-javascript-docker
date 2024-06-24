@@ -4,6 +4,7 @@
 
 trigger:
 - master
+- charandev
 
 pool:
   default
